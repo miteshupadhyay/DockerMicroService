@@ -1,0 +1,24 @@
+version : "3"
+
+services: 
+    
+    my-rest-api-db:
+       image: my-rest-api-docker
+       networks: 
+          - my-rest-network
+       ports:
+          - 80:8080     
+       depends_on:
+          - docker
+    
+    docker:
+       image: mysql:8
+       networks:
+          - my-rest-network
+       environment:
+          - MYSQL_ROOT_PASSWORD=password
+          - MYSQL_DATABASE=docker
+
+          
+networks:
+   my-rest-network:
